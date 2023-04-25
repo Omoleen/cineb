@@ -19,7 +19,7 @@ const Featured = () => {
                                             <div className="d-flex align-items-center justify-content-center h-100">
                                                 <div
                                                     className="d-flex align-items-center justify-content-center rounded-circle"
-                                                    style={{backgroundcolor: '#59815a',color: 'white',width: '60px',height: '60px'}}>
+                                                    style={{backgroundColor: '#59815a',color: 'white',width: '60px',height: '60px'}}>
                                                     <i
     style={{fontWeight: 200}} className="bi bi-play-fill"/></div>
                                             </div>
