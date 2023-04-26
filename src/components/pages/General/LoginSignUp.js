@@ -1,9 +1,10 @@
 import '../../../assets/css/styles.css'
-import {useState} from "react";
+import {useRef, useState} from "react";
 
 const LoginSignUp = () => {
+    const loginOverlay = useRef()
     const closeLogin = () => {
-        document.getElementById("login-overlay").style.display = 'none'
+        loginOverlay.current.style.display = 'none'
     }
     const [state, setState] = useState('login')
     const handleClick = (e) => {
@@ -23,7 +24,7 @@ const LoginSignUp = () => {
         e.preventDefault()
     }
     return (
-        <div className="login-overlay" id="login-overlay">
+        <div ref={loginOverlay} className="login-overlay" id="login-overlay">
               <div className="d-flex align-items-center justify-content-center w-100 h-100">
                   <div className="card bg-white rounded-0 col-11 col-sm-10 col-md-4 m-1 border-0"
                        style={{position: 'absolute', height: 'fit-content'}}>

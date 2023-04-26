@@ -3,19 +3,21 @@ import {Routes, Route, Link} from "react-router-dom";
 import {Landing} from "../Landing/Landing";
 import {Movie} from "../Movie/Movie";
 import {Footer} from "./Footer";
+import {useRef} from "react";
 
 const Nav = () => {
+    const mySidenav = useRef()
     const closeNav = () => {
-        document.getElementById("mySidenav").style.width = "0";
+        mySidenav.current.style.width = '0'
     }
     const openNav = () => {
-        document.getElementById("mySidenav").style.width = "18.75rem";
+        mySidenav.current.style.width = '18.75rem'
     }
     const Login = () => {
     document.getElementById("login-overlay").style.display = 'block'
     }
 
-    return (<>
+    return (
         <nav className="" style={{backgroundColor: '#273227',height:'fit-content'}}>
             <div
                 className="navbar navbar-expand-lg navbar-light justify-content-between align-items-center p-3 h-100">
@@ -42,7 +44,7 @@ const Nav = () => {
                 <div onClick={Login} role='button' style={{color: 'white'}} className="text-decoration-none nav-item"><i
         className="bi bi-person-fill fs-6"/>Login</div>
 
-                <div id="mySidenav" className="sidenav">
+                <div ref={mySidenav} id="mySidenav" className="sidenav">
                     <div className="p-4">
                         <div onClick={closeNav} role="button"
                              className="text-dark p-2 rounded-pill d-inline-flex justify-content-center align-items-center gap-2 close-menu mb-3"
@@ -67,14 +69,7 @@ const Nav = () => {
             <input type="text" className="form-control" style={{borderLeft: 0,outline: 'none'}} id="search-movie"/>
         </div>
         </nav>
-        <main>
-            <Routes>
-                <Route path='/' element={<Landing />}/>
-                <Route path='/movie' element={<Movie />}/>
-            </Routes>
-        </main>
-        <Footer />
-    </>)
+    )
 }
 
 export {Nav}
