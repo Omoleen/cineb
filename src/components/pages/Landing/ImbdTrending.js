@@ -1,5 +1,6 @@
-import '../assets/css/styles.css'
-import {Footer} from "./Footer";
+import '../../../assets/css/styles.css'
+import {Footer} from "../General/Footer";
+import {Link} from "react-router-dom";
 
 
 const ImbdTrending = () => {
@@ -24,7 +25,7 @@ const ImbdTrending = () => {
                     <div className="row">
                         {trending.map((trend, index) => (<div key={index} className="col-md-2 col-6 mb-2">
                             <div className="">
-                                <a href="" className="text-decoration-none">
+                                <Link to="/movie" className="text-decoration-none">
                                     <div className="film-poster">
                                         <img
                                             src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
@@ -46,7 +47,7 @@ const ImbdTrending = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="film-detail mt-2" >
                                     <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
                                     <div style={{color: '#273227', fontSize: '0.75rem'}} className="mt-1">
@@ -76,7 +77,7 @@ const ImbdTrending = () => {
                         <div className="row">
                             {trending.map((trend, index) => (<div key={index} className="col-md-2 col-6 mb-2">
                             <div className="">
-                                <a href="" className="text-decoration-none">
+                                <Link to="/movie" className="text-decoration-none">
                                     <div className="film-poster">
                                         <img
                                             src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
@@ -98,7 +99,7 @@ const ImbdTrending = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                                 <div className="film-detail mt-2" >
                                     <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
                                     <div style={{color: '#273227', fontSize: '0.75rem'}} className="mt-1">
@@ -124,11 +125,11 @@ const ImbdTrending = () => {
                 </div>
                 {trending.map((movie,index) => (
                     <div key={index} className="d-flex imbd-movies mb-2">
-                    <a href="">
+                    <Link to="/movie">
                         <img
                             src="https://img.cineb.net/xxrz/250x400/188/c6/7d/c67d86ebbe68f9adbac3e564416f5e29/c67d86ebbe68f9adbac3e564416f5e29.jpg"
                             width="100" height="148" className="rounded-3" alt=''/>
-                    </a>
+                    </Link>
                     <div className="mx-3">
                         <div className="film-detail mt-2" >
                             <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>

@@ -1,7 +1,7 @@
-import '../assets/css/styles.css'
+import '../../../assets/css/styles.css'
 import {Routes, Route, Link} from "react-router-dom";
-import {Landing} from "./Landing";
-import {Movie} from "./Movie";
+import {Landing} from "../Landing/Landing";
+import {Movie} from "../Movie/Movie";
 import {Footer} from "./Footer";
 
 const Nav = () => {
@@ -23,7 +23,7 @@ const Nav = () => {
                         <span className="navbar-toggler-icon"/>
                     </button>
 
-                    <Link to='/' className="navbar-brand"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
+                    <Link to='/movie' className="navbar-brand"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
                                                               alt=""
                                                               width="40" height="40"/></Link>
 
@@ -45,13 +45,13 @@ const Nav = () => {
                              style={{width: 'fit-content',backgroundColor: '#eeeeee'}}>
                             <i className="fa fa-less-than fa-lg"/> Close menu
                         </div>
-                        <a href="/" className="pb-1 pt-1" >About</a>
+                        <Link to="/" className="pb-1 pt-1" >About</Link>
                         <hr className="" style={{height: '1px'}}/>
-                        <a href="/" className="pb-1 pt-1" >About</a>
+                        <Link to="/" className="pb-1 pt-1" >About</Link>
                         <hr className="" style={{height: '1px'}}/>
-                        <a href="/" className="pb-1 pt-1" >About</a>
+                        <Link to="/" className="pb-1 pt-1" >About</Link>
                         <hr className="" style={{height: '1px'}}/>
-                        <a href="/" className="pb-1 pt-1">About</a>
+                        <Link to="/" className="pb-1 pt-1" >About</Link>
                         <hr className="" style={{height: '1px'}}/>
                     </div>
                 </div>

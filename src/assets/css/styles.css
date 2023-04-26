@@ -13,8 +13,16 @@ body {
     font-size: 0.875rem;
 }
 
-main {
+
+@media screen and (min-width: 700px) {
+  main {
     padding: 1.7625em;
+}
+}
+@media screen and (max-width: 700px) {
+  main {
+    padding: 0.8812em;
+}
 }
 
 section {
