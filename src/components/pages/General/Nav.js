@@ -27,7 +27,7 @@ const Nav = () => {
                         <span className="navbar-toggler-icon"/>
                     </button>
 
-                    <Link to='/movie' className="navbar-brand"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
+                    <Link to='/' className="navbar-brand"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
                                                               alt=""
                                                               width="40" height="40"/></Link>
 
