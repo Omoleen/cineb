@@ -14,7 +14,7 @@ const Nav = () => {
         mySidenav.current.style.width = '18.75rem'
     }
     const Login = () => {
-    document.getElementById("login-overlay").style.display = 'block'
+    document.getElementById("login-overlay").style.display = 'flex'
     }
 
     return (
@@ -41,7 +41,7 @@ const Nav = () => {
                     <input type="text" className="form-control" style={{borderLeft: 0,outline: 'none'}} id="search-movie"/>
                 </div>
 
-                <div onClick={Login} role='button' style={{color: 'white'}} className="text-decoration-none nav-item"><i
+                <div onClick={Login} role='button' style={{color: 'white'}} className="text-decoration-none nav-item d-flex align-content-center gap-2"><i
         className="bi bi-person-fill fs-6"/>Login</div>
 
                 <div ref={mySidenav} id="mySidenav" className="sidenav">
