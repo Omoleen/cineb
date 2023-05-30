@@ -1,0 +1,2 @@
+export const ADDMESSAGE = 'ADDMESSAGE'
+export const SETPARTYID = 'SETPARTYID'

@@ -1,11 +1,15 @@
-import '../../../assets/css/styles.css'
+import '../assets/css/styles.css'
 import {Routes, Route, Link} from "react-router-dom";
-import {Landing} from "../Landing/Landing";
-import {Movie} from "../Movie/Movie";
+import {Landing} from "./pages/Landing";
+import {Movie} from "./pages/Movie";
 import {Footer} from "./Footer";
 import {useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {LoginAction} from "../redux/auth/actions";
 
 const Nav = () => {
+    const dispatch = useDispatch()
+    const authState = useSelector(state => state.auth)
     const mySidenav = useRef()
     const closeNav = () => {
         mySidenav.current.style.width = '0'
@@ -14,8 +18,10 @@ const Nav = () => {
         mySidenav.current.style.width = '18.75rem'
     }
     const Login = () => {
-    document.getElementById("login-overlay").style.display = 'flex'
+        dispatch((LoginAction()))
+        document.getElementById("login-overlay").style.display = 'flex'
     }
+    // console.log(authState.token.access)
 
     return (
         <nav className="" style={{backgroundColor: '#273227',height:'fit-content'}}>
@@ -40,9 +46,10 @@ const Nav = () => {
         style={{color: '#273227'}}/></span>
                     <input type="text" className="form-control" style={{borderLeft: 0,outline: 'none'}} id="search-movie"/>
                 </div>
+                {!authState.token.access ? <div onClick={Login} role='button' style={{color: 'white'}} className="nav-item"><i
+        className="bi bi-person-fill fs-6"/> Login  </div> :  <div onClick={Login} role='button' style={{color: 'white'}} className="nav-item"><i
+        className="bi bi-person-fill fs-6"/> Logout  </div> }
 
-                <div onClick={Login} role='button' style={{color: 'white'}} className="text-decoration-none nav-item d-flex align-content-center gap-2"><i
-        className="bi bi-person-fill fs-6"/>Login</div>
 
                 <div ref={mySidenav} id="mySidenav" className="sidenav">
                     <div className="p-4">

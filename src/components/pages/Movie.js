@@ -1,9 +1,9 @@
 import {useEffect} from "react";
-import {Breadcrumb} from "./Breadcrumb";
-import {MovieBox} from "./MovieBox";
-import {Socials} from "../General/Socials";
-import {AboutMovie} from "./AboutMovie";
-import {MayLike} from "./MayLike";
+import {Breadcrumb} from "../page components/Movie/Breadcrumb";
+import {MovieBox} from "../page components/Movie/MovieBox";
+import {Socials} from "../page components/General/Socials";
+import {AboutMovie} from "../page components/Movie/AboutMovie";
+import {MayLike} from "../page components/Movie/MayLike";
 
 const Movie = () => {
     useEffect(() => {

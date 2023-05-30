@@ -1,5 +1,5 @@
 import '../../../assets/css/styles.css'
-import {Footer} from "../General/Footer";
+import {Footer} from "../../Footer";
 import {Link} from "react-router-dom";
 
 
