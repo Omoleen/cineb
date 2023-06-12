@@ -1,8 +1,8 @@
 import {ADDMESSAGE, SETPARTYID, SETPARTYURL, SETNUMPARTYUSERS, SETPARTYADMINSTATUS, SETIs_PLAYING, SETCURRENTTIME, ENDPARTY} from "./actionTypes";
 import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL
+const wsUrl = process.env.REACT_APP_WS_URL
 const initialState = {
-    url: 'ws://' + apiUrl,
+    url: wsUrl,
     messages: [],
     isPartyStarted: null,
     partyId: null,
