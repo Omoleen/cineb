@@ -1,6 +1,6 @@
 import '../../../assets/css/styles.css'
 import {useSelector, useDispatch} from "react-redux";
-import {LoginAction, ForgotDataAction} from "../../../redux/auth/actions";
+import {LoginAction, ForgotDataAction, SetLoginOverlay, Set_Error} from "../../../redux/auth/actions";
 import axios from "axios";
 
 const ForgotPassword = () => {
@@ -13,6 +13,7 @@ const ForgotPassword = () => {
                 console.log(response.data)
                 if (response.status === 200) {
                     console.log(response.data)
+                    dispatch(SetLoginOverlay(!authState.loginOverlay))
                     // dispatch(TokenDataAction(response.data))
                     // localStorage.setItem('token', JSON.stringify(response.data))
                 }
@@ -31,6 +32,17 @@ const ForgotPassword = () => {
                                   Reset Password
                               </h2>
                           </div>
+                        {authState.error &&
+                          <div className='alert alert-danger alert-dismissible position-relative'>
+                                {authState.error}
+                              <div onClick={() => dispatch(Set_Error(""))}
+                                   className="text-white position-absolute rounded-circle d-flex align-items-center justify-content-center"
+                                   role="button"
+                                   style={{fontSize:'20px',backgroundColor:'transparent',top:'-5px',right:'5px'}}>
+                              <span>×</span>
+                          </div>
+                              </div>
+                          }
                           <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
                               <div className="d-flex flex-column gap-2">
                                   <label htmlFor="email" style={{fontSize:'11px', color:'#111'}}>YOUR EMAIL</label>

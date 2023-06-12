@@ -11,47 +11,52 @@ import {CakeContainer} from "./components/page components/redux/CakeContainer";
 import {useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import axios from "axios";
-import {TokenDataAction} from "./redux/auth/actions";
+import {SetUserEmail, TokenDataAction} from "./redux/auth/actions";
+import {useState} from "react";
 
 function App() {
     const dispatch = useDispatch()
     const authState = useSelector(state => state.auth)
     useEffect(() => {
-    const fetchTokens = async () => {
-      try {
-        // Retrieve tokens from localStorage
-        const storedTokens = localStorage.getItem('token');
-        console.log(storedTokens)
-        if (storedTokens) {
-            const JSONTokens = JSON.parse(storedTokens)
-          // Verify token validity with an API endpoint
-          await axios.post(authState.url + 'user/verify/', {
-            access: JSONTokens.access
-          }).then(response => {
-              if (response.status === 200) {
-                  dispatch(TokenDataAction(JSONTokens))
-              } else {
-                  localStorage.removeItem('token')
-              }
-          }).catch(error => console.log(error));
+        const fetchTokens = async () => {
+          try {
+            // Retrieve tokens from localStorage
+            const storedTokens = localStorage.getItem('token');
+            console.log(storedTokens)
+            if (storedTokens) {
+                const JSONTokens = JSON.parse(storedTokens)
+              // Verify token validity with an API endpoint
+              await axios.post(authState.url + 'user/verify/', {
+                access: JSONTokens.access
+              }).then(response => {
+                  if (response.status === 200) {
+                      dispatch(TokenDataAction(JSONTokens))
+                      dispatch(SetUserEmail(response.data.email))
+                  } else {
+                      localStorage.removeItem('token')
+                      console.log('access token invalid')
+                  }
+              }).catch(error => console.log(error));
 
-        }
-        } catch (error) {
-        // Handle error
-        console.error('Error verifying tokens:', error);
-      }
-    };
-    fetchTokens();
+            }
+            } catch (error) {
+            // Handle error
+            console.error('Error verifying tokens:', error);
+          }
+        };
+        fetchTokens();
   }, []);
+
+
   return (
       <>
           {/*<Link to='/cake'>Cake Redux</Link>*/}
-          <Auth />
+          {authState.loginOverlay && <Auth />}
           <Nav />
           <main>
             <Routes>
                 <Route path='/' element={<Landing />}/>
-                <Route path='/movie' element={<Movie />}/>
+                <Route path='/movie/:id?' element={<Movie />}/>
                 <Route path='/cake' element={<CakeContainer />}/>
             </Routes>
           </main>

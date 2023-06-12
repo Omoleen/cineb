@@ -5,7 +5,7 @@ import {Movie} from "./pages/Movie";
 import {Footer} from "./Footer";
 import {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {LoginAction} from "../redux/auth/actions";
+import {LoginAction, SetLoginOverlay, LogoutAction} from "../redux/auth/actions";
 
 const Nav = () => {
     const dispatch = useDispatch()
@@ -18,8 +18,9 @@ const Nav = () => {
         mySidenav.current.style.width = '18.75rem'
     }
     const Login = () => {
-        dispatch((LoginAction()))
-        document.getElementById("login-overlay").style.display = 'flex'
+        // dispatch((LoginAction()))
+        // document.getElementById("login-overlay").style.display = 'flex'
+        dispatch(SetLoginOverlay(!authState.loginOverlay))
     }
     // console.log(authState.token.access)
 
@@ -47,7 +48,7 @@ const Nav = () => {
                     <input type="text" className="form-control" style={{borderLeft: 0,outline: 'none'}} id="search-movie"/>
                 </div>
                 {!authState.token.access ? <div onClick={Login} role='button' style={{color: 'white'}} className="nav-item"><i
-        className="bi bi-person-fill fs-6"/> Login  </div> :  <div onClick={Login} role='button' style={{color: 'white'}} className="nav-item"><i
+        className="bi bi-person-fill fs-6"/> Login  </div> :  <div onClick={() => dispatch(LogoutAction())} role='button' style={{color: 'white'}} className="nav-item"><i
         className="bi bi-person-fill fs-6"/> Logout  </div> }
 
 

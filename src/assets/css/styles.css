@@ -352,6 +352,12 @@ section {
         top: 10%;
         position: absolute
     }
+    #watch-party {
+        width: 100%
+    }
+    .party-url {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 1400px) {
@@ -372,6 +378,9 @@ section {
         /*left: 10%;*/
         top: 15%;
         position: absolute
+    }
+    #watch-party {
+        width: 25%
     }
 }
 
@@ -414,3 +423,25 @@ section {
     }
 }
 
+@media screen and (min-width: 1400px) {
+    .party-url {
+        width: 40%;
+    }
+}
+
+.copy-link:hover {
+    background-color: gray;
+}
+.copy-link {
+    background-color: transparent;
+}
+.arrow {
+    background-color: grey;
+}
+.tooltip-inner {
+    color: white;
+    font-size: 16px;
+}
+.input-group-text:hover {
+    background-color: grey;
+}

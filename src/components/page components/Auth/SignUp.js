@@ -1,6 +1,6 @@
 import '../../../assets/css/styles.css'
 import {useSelector, useDispatch} from "react-redux";
-import {LoginAction, SignUpDataAction, TokenDataAction} from "../../../redux/auth/actions";
+import {LoginAction, Set_Error, SetLoginOverlay, SignUpDataAction, TokenDataAction} from "../../../redux/auth/actions";
 import axios from "axios";
 
 
@@ -14,10 +14,13 @@ const SignUp = () => {
                 if (response.status === 200) {
                     console.log(response.data)
                     dispatch(TokenDataAction(response.data))
+                    dispatch(SetLoginOverlay(!authState.loginOverlay))
                     localStorage.setItem('token', JSON.stringify(response.data))
+                } else {
+                    dispatch(Set_Error('User already exists'))
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => dispatch(Set_Error('User already exists')))
     }
     const handleInput = e => {
         dispatch(SignUpDataAction({[e.target.name]: e.target.value}))
@@ -31,6 +34,17 @@ const SignUp = () => {
                                   Create an Account
                               </h2>
                           </div>
+                        {authState.error &&
+                      <div className='alert alert-danger alert-dismissible position-relative'>
+                            {authState.error}
+                          <div onClick={() => dispatch(Set_Error(""))}
+                               className="text-white position-absolute rounded-circle d-flex align-items-center justify-content-center"
+                               role="button"
+                               style={{fontSize:'20px',backgroundColor:'transparent',top:'-5px',right:'5px'}}>
+                          <span>×</span>
+                  </div>
+                      </div>
+                  }
                           <form className="d-flex flex-column gap-3" onSubmit={handleSubmit}>
                               <div className="d-flex flex-column gap-2">
                                   <label htmlFor="name" style={{fontSize:'11px', color:'#111'}}>YOUR NAME</label>

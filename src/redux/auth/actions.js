@@ -1,7 +1,7 @@
-import {LOGIN, SIGNUP, FORGOT, CANCEL, SETLOGINDATA,SETSIGNUPDATA,SETFORGOTDATA, SETTOKENDATA, SUBMITFORGOTDATA, SUBMITSIGNUPDATA, SUBMITLOGINDATA} from "./actionTypes";
-import axios from "axios";
+import {LOGIN, SIGNUP, FORGOT, CANCEL, SETLOGINDATA,SETSIGNUPDATA,SETFORGOTDATA, SETLOGINOVERLAY, SETTOKENDATA, SETEMAIL, ERROR, LOGOUT, SUBMITFORGOTDATA, SUBMITSIGNUPDATA, SUBMITLOGINDATA} from "./actionTypes";
 
-const url = 'http://localhost:8000/'
+
+
 export const LoginAction = () => {
     return {
         type: LOGIN
@@ -20,6 +20,11 @@ export const ForgotAction = () => {
 export const CancelAction = () => {
     return {
         type: CANCEL
+    }
+}
+export const LogoutAction = () => {
+    return {
+        type: LOGOUT
     }
 }
 export const LoginDataAction = payload => {
@@ -44,6 +49,24 @@ export const TokenDataAction = payload => {
     return {
         type: SETTOKENDATA,
         payload: payload
+    }
+}
+export const SetUserEmail = payload => {
+    return {
+        type: SETEMAIL,
+        payload: payload
+    }
+}
+export const SetLoginOverlay = payload => {
+    return {
+        type: SETLOGINOVERLAY,
+        payload: payload
+    }
+}
+export const Set_Error = (err) => {
+    return {
+        type: ERROR,
+        payload: err
     }
 }
 // export const SubmitLoginDataAction = () => {
