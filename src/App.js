@@ -59,7 +59,7 @@ function App() {
           <main>
             <Routes>
                 <Route path='/' element={<Landing />}/>
-                <Route path='/movie/:id?' element={<Movie />}/>
+                <Route path='/video/:id?' element={<Movie />}/>
                 <Route path='/cake' element={<CakeContainer />}/>
             </Routes>
           </main>
