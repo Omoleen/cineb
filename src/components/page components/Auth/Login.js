@@ -1,7 +1,7 @@
 import '../../../assets/css/styles.css'
 import {useRef, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {Set_Error} from "../../../redux/auth/actions";
+import {Set_Error, SetUserEmail} from "../../../redux/auth/actions";
 import {
     SignUpAction,
     ForgotAction,
@@ -16,13 +16,18 @@ const Login = () => {
     const authState = useSelector(state => state.auth)
     const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log('login submitted')
         await axios.post(authState.url+'user/login/', authState.logindata)
             .then(response => {
+                console.log('log')
+                console.log(response)
                 if (response.status === 200) {
                     console.log(response.data)
                     dispatch(TokenDataAction(response.data))
+                    dispatch(SetUserEmail(authState.logindata.email))
                     localStorage.setItem('token', JSON.stringify(response.data))
                     dispatch(SetLoginOverlay(!authState.loginOverlay))
+                    dispatch(Set_Error(''))
                 }
             })
             .catch(error => dispatch(Set_Error('Incorrect Login Details')))
@@ -84,7 +89,10 @@ const Login = () => {
           <div className="card-footer d-flex align-items-center justify-content-center gap-1 p-4 border-0"
                style={{backgroundColor: '#f2f2f2'}}>
                               <div>Don't have an account?</div>
-                              <a href="#" onClick={() => dispatch(SignUpAction())}>Register</a>
+                              <a href="#" onClick={(e) => {
+                                  e.preventDefault()
+                                  dispatch(SignUpAction())
+                              }}>Register</a>
                           </div>
         </>
     )

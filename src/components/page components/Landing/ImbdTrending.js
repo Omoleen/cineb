@@ -49,7 +49,7 @@ const ImbdTrending = () => {
                                     </div>
                                 </Link>
                                 <div className="film-detail mt-2" >
-                                    <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
+                                    <a href="#" onClick={(e) => e.preventDefault()} className="text-decoration-none fw-bold">The Mandalorian</a>
                                     <div style={{color: '#273227', fontSize: '0.75rem'}} className="mt-1">
                                 <span className="p-1 rounded-3"
                                       style={{backgroundColor: '#59815a', color: 'white'}}>HD</span> SS 3 <i
@@ -68,7 +68,7 @@ const ImbdTrending = () => {
                             <div style={{color: '#59815a',fontSize: '1.375rem',fontWeight: 500}}
                                  className="">{last}
                             </div>
-                            <a href=""
+                            <a href="" onClick={(e) => e.preventDefault()}
                                className="d-inline-flex align-items-center gap-2 text-decoration-none text-dark">
                                 <div className="">View all</div>
                                 <i className="fa fa-greater-than"/>
@@ -101,7 +101,7 @@ const ImbdTrending = () => {
                                     </div>
                                 </Link>
                                 <div className="film-detail mt-2" >
-                                    <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
+                                    <a href="#" onClick={(e) => e.preventDefault()} className="text-decoration-none fw-bold">The Mandalorian</a>
                                     <div style={{color: '#273227', fontSize: '0.75rem'}} className="mt-1">
                                 <span className="p-1 rounded-3"
                                       style={{backgroundColor: '#59815a', color: 'white'}}>HD</span> SS 3 <i
@@ -132,7 +132,7 @@ const ImbdTrending = () => {
                     </Link>
                     <div className="mx-3">
                         <div className="film-detail mt-2" >
-                            <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
+                            <a href="#" onClick={(e) => e.preventDefault()} className="text-decoration-none fw-bold">The Mandalorian</a>
                             <div style={{color: '#273227'}} className="mt-1">
                                 <span className="p-1 mb-1 rounded-3"
                                       style={{backgroundColor: '#59815a',color: 'white'}}>HD</span> SS 3 <i

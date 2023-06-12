@@ -8,7 +8,7 @@ const Footer = () => {
                 className="d-flex flex-column flex-sm-row gap-2 gap-sm-0 justify-content-sm-between align-items-sm-center p-4 p-lg-5">
             <div className="d-none d-xl-block">
                 <div className="d-flex flex-column">
-                    <a href="" className="mb-3"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
+                    <a href="" onClick={(e) => e.preventDefault()} className="mb-3"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
                                                       alt=""
                                                       width="40" height="40"/> </a>
                     <div className="d-flex flex-row">&copy; Cineb.net</div>
@@ -22,11 +22,11 @@ const Footer = () => {
                     and watch it later if you want.
                 </div>
                 <div className="">
-                    <a href="" className="text-decoration-none text-white">Terms of service</a><i
+                    <a href="" onClick={(e) => e.preventDefault()} className="text-decoration-none text-white">Terms of service</a><i
     className="bi bi-dot"/>
-                    <a href="" className="text-decoration-none text-white">Contact</a><i className="bi bi-dot"/>
-                    <a href="" className="text-decoration-none text-white">Sitemap</a><i className="bi bi-dot"/>
-                    <a href="" className="text-decoration-none text-white">9anime</a>
+                    <a href="" onClick={(e) => e.preventDefault()} className="text-decoration-none text-white">Contact</a><i className="bi bi-dot"/>
+                    <a href="" onClick={(e) => e.preventDefault()} className="text-decoration-none text-white">Sitemap</a><i className="bi bi-dot"/>
+                    <a href="" onClick={(e) => e.preventDefault()} className="text-decoration-none text-white">9anime</a>
                 </div>
                 <div className="d-xl-none d-none d-sm-block mt-3">&copy; Cineb.net</div>
             </div>

@@ -219,7 +219,7 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
               if (wpData.adminStatus && (wpData.num_of_party_users !== data.num_of_users)) {
                   // update the db time
                   const send_party_data = async (is_playing, current_time) => {
-                    axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
+                    await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
                         is_playing: is_playing,
                         current_time: current_time
                     }).then(response => {
@@ -229,7 +229,10 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                         }
                     }).catch(error => console.log(error))
               }
-            send_party_data(wpData.is_playing, playerRef.current.getCurrentTime() ? playerRef.current.getCurrentTime() : 0)
+              console.log(playerRef.current)
+              if (playerRef.current !== null) {
+                  send_party_data(wpData.is_playing, playerRef.current.getCurrentTime() ? playerRef.current.getCurrentTime() : 0 )
+              }
           }
         };
         // setIsConnected(true)
@@ -288,15 +291,15 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
         <>
             <div className="order-3 flex-column py-2 pb-3 position-relative" id="watch-party" ref={watchParty}
              style={{backgroundColor: '#222222',fontSize: '12px',color: '#6a6a6a',display: 'flex',top:0, left:0, animation: 'fadeIn 0.5s'}}>
-                <div className="d-flex justify-content-between p-2" style={{borderBottom: '0.15rem solid #464646'}}>
+                <div className="d-flex justify-content-between p-2" style={{borderBottom: '0.15rem solid #464646', height: 'fit-content'}}>
 
                         <div className="d-flex flex-nowrap gap-2 align-items-center"  >
                             <img
                                 src="https://redirect.teleparty.com/static/media/HideChat.e1a44f4c9d14a0e8fd59b71a18e4a058.svg"
-                                alt height="14" onClick={closeWatchParty} role="button"/>
+                                alt="" height="14" onClick={closeWatchParty} role="button"/>
                                 <img
                                     src="https://redirect.teleparty.com/static/media/tp_icon_gradient.2d4db0938d834db38f82db8e435a8b07.svg"
-                                     alt height="20"/>
+                                     alt="" height="20"/>
                                 <div
                                     className="d-flex flex-nowrap justify-content-center align-items-center px-2 py-1 gap-1 rounded-2"
                                     style={{backgroundColor: 'gold'}} role="button">
@@ -305,7 +308,7 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                                 </div>
                                 <img
                                     src="https://redirect.teleparty.com/static/media/cam.b15aa804e510ba90282f621972da6daf.svg"
-                                    alt height="18px" role="button" onClick={videoCall} id="video-call-trigger"/>
+                                    alt="" height="18px" role="button" onClick={videoCall} id="video-call-trigger"/>
                         </div>
 
                         <div className="d-flex flex-nowrap gap-2 align-items-center px-1"  >
@@ -323,11 +326,11 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                                 </div>
                             </div>
                             <img src={Poohbear}
-                                 alt height="30"/>
+                                 alt="" height="30"/>
                         </div>
                     </div>
 
-                <div ref={messagesRef} className="d-flex flex-column overflow-scroll pt-1 position-relative" style={{overflowY: 'scroll', maxHeight: '100%'}}  >
+                <div ref={messagesRef} className="d-flex flex-column overflow-scroll pt-1 position-relative" style={{overflowY: 'scroll', height: '100%'}}  >
 
 
                     <div className="position-absolute" id="video-call-screen" ref={videoCallScreen}
@@ -343,40 +346,19 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                         <div className="bg-white"></div>
                         <div className="bg-white"></div>
                     </div>
-                    {/*{wpData.partyId ? {wpData.messages.map((message) => !message.message_from_machine ? (message.message_from_user === authData.loggedInEmail ?*/}
-                    {/*    (<div key={message?.id} className="d-flex flex-nowrap gap-2 pb-2 w-100 justify-content-end" style={{color: '#8c8c8c',fontSize: '14px'}}>*/}
-                    {/*        <div className=""  >*/}
-                    {/*            <p>{message.message}</p>*/}
-                    {/*        </div>*/}
-                    {/*        <img src={Poohbear}*/}
-                    {/*          alt height="40"/>*/}
-                    {/*    </div>)*/}
-                    {/*    :*/}
-                    {/*    (<div key={message?.id} className="d-flex flex-nowrap gap-2 pb-2 w-100" style={{color: '#8c8c8c',fontSize: '14px'}}>*/}
-                    {/*        <img src={Poohbear}*/}
-                    {/*          alt height="40"/>*/}
-                    {/*        <div className=""  >*/}
-                    {/*            <p style={{fontSize: '8px'}} className='m-0 p-0'>{message.message_from}</p>*/}
-                    {/*            <p>{message.message}</p>*/}
-                    {/*        </div>*/}
-                    {/*    </div>))*/}
-                    {/*    :*/}
-                    {/*    (<div key={message?.id} className='d-flex align-items-center justify-content-center w-100' style={{color: 'white',fontSize: '14px'}}>*/}
-                    {/*    <p>{message.message}</p>*/}
-                    {/*    </div>))} :*/}
-                    {/*<div className='h-100' style={{backgroundColor: 'transparent'}}/> }*/}
+
                     {wpData.messages.map((message) => !message.message_from_machine ? (message.message_from_user === authData.loggedInEmail ?
                         (<div key={message?.id} className="d-flex flex-nowrap gap-2 pb-2 w-100 justify-content-end" style={{color: '#8c8c8c',fontSize: '14px'}}>
                             <div className=""  >
                                 <p>{message.message}</p>
                             </div>
                             <img src={Poohbear}
-                              alt height="40"/>
+                              alt="" height="40"/>
                         </div>)
                         :
                         (<div key={message?.id} className="d-flex flex-nowrap gap-2 pb-2 w-100" style={{color: '#8c8c8c',fontSize: '14px'}}>
                             <img src={Poohbear}
-                              alt height="40"/>
+                              alt="" height="40"/>
                             <div className=""  >
                                 <p style={{fontSize: '8px'}} className='m-0 p-0'>{message.message_from}</p>
                                 <p>{message.message}</p>
@@ -391,21 +373,21 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
 
                 </div>
 
-                <div className="p-2 rounded-2 mt-3" style={{border:'1.5px solid #464646'}}>
+                <div className="p-2 rounded-2 mt-3" style={{border:'1.5px solid #464646', height: 'fit-content'}}>
 
                     <div className="w-100 d-flex align-items-center justify-content-evenly pt-2"  >
                         <img src={heart_static} onClick={handleEmoji}
                              alt={emojis.heart_static} height="24px" width="24px"/>
-                            <img src={angry_static} onClick={handleEmoji}
-                                 alt={emojis.angry_static} height="24px" width="24px"/>
-                                <img src={cry_static} alt={emojis.cry_static} onClick={handleEmoji}
-                                     height="24px" width="24px"/>
-                                    <img src={laugh_static} onClick={handleEmoji}
-                                         alt={emojis.laugh_static} height="24px" width="24px"/>
-                                        <img src={surprise_static} onClick={handleEmoji}
-                                             alt={emojis.surprise_static} height="24px" width="24px"/>
-                                            <img src={fire_static} onClick={handleEmoji}
-                                                 alt={emojis.fire_static} height="24px" width="24px"/>
+                        <img src={angry_static} onClick={handleEmoji}
+                             alt={emojis.angry_static} height="24px" width="24px"/>
+                        <img src={cry_static} alt={emojis.cry_static} onClick={handleEmoji}
+                             height="24px" width="24px"/>
+                        <img src={laugh_static} onClick={handleEmoji}
+                             alt={emojis.laugh_static} height="24px" width="24px"/>
+                        <img src={surprise_static} onClick={handleEmoji}
+                             alt={emojis.surprise_static} height="24px" width="24px"/>
+                        <img src={fire_static} onClick={handleEmoji}
+                             alt={emojis.fire_static} height="24px" width="24px"/>
                     </div>
                     <hr style={{height:'0.15rem'}}/>
                     <form onSubmit={sendMessage}>
@@ -419,21 +401,21 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                             <div className="d-flex align-items-center gap-2 flex-nowrap"  >
                                 <img
                                     src="https://redirect.teleparty.com/static/media/cam.b15aa804e510ba90282f621972da6daf.svg"
-                                    alt height="18px" width="18px"/>
+                                    alt="" height="18px" width="18px"/>
                                     <img
                                         src="https://redirect.teleparty.com/static/media/mic.c4821928b497235601ac5fadf9537f93.svg"
-                                        alt height="18px" width="18px"/>
+                                        alt="" height="18px" width="18px"/>
                             </div>
                             <div className="d-flex align-items-center gap-2 flex-nowrap"  >
                                 <img
                                     src="https://redirect.teleparty.com/static/media/emoji_picker_button.e7b05fbb4d2f086bfa19bc5b50daa2d1.svg"
-                                    alt height="18px" width="18px"/>
+                                    alt="" height="18px" width="18px"/>
                                     <img
                                         src="https://redirect.teleparty.com/static/media/gif_icon.6d3772895e39504eb2eaf6b44483224d.svg"
-                                        alt height="18px" width="18px"/>
+                                        alt="" height="18px" width="18px"/>
                                         <img
                                             src="https://redirect.teleparty.com/static/media/reaction-popup.75e33f008d6b713e73b6ef4ff9b992ad.svg"
-                                            alt height="18px" width="18px"/>
+                                            alt="" height="18px" width="18px"/>
                             </div>
                         </div>
                 </div>

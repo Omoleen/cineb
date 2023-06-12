@@ -32,7 +32,7 @@ const MovieBox = () => {
     const watchPartyIcons = useRef(null)
     const partyIcon = useRef(null)
     const videoCallScreen = useRef(null)
-    const playerRef = useRef()
+    const playerRef = useRef(null)
     const [isWatchParty, setisWatchParty] = useState(false)
     const [copyLink, setCopyLink] = useState('Copy Link')
 
@@ -143,7 +143,7 @@ const MovieBox = () => {
                      style={{backgroundColor: 'transparent', width: 'fit-content', display: 'none'}}>
                     <img
                         src="https://redirect.teleparty.com/static/media/tp_icon_gradient.2d4db0938d834db38f82db8e435a8b07.svg"
-                         alt height="18px"/>
+                         alt="" height="18px"/>
                     <div className="d-flex flex-column gap-4 pt-4 px-2" style={{borderTop: '2px solid #282828'}}>
                         <button className='copy-link p-1 rounded-1 border-0' onClick={handleCopy}>
                             <OverlayTrigger
@@ -154,12 +154,12 @@ const MovieBox = () => {
                           </OverlayTrigger>
                         </button>
                         <button className='px-1 border-0' style={{backgroundColor: 'transparent'}} onClick={openWatchParty}>
-                            <img src={icon_chat_inactive} alt height="18px" width='18px'
+                            <img src={icon_chat_inactive} alt="" height="18px" width='18px'
                              />
                         </button>
 
                         <button className='px-1 border-0' style={{backgroundColor: 'transparent'}} onClick={endWatchParty}>
-                            <img src={icon_logout_active} alt height="18px" width='18px' role="button"
+                            <img src={icon_logout_active} alt="" height="18px" width='18px' role="button"
                                  />
                         </button>
 
@@ -169,7 +169,7 @@ const MovieBox = () => {
                 <div className="" style={{backgroundColor: 'transparent',width: 'fit-content'}} id="party-icon" ref={partyIcon}>
                     <img
                         src="https://redirect.teleparty.com/static/media/tp_icon_gradient.2d4db0938d834db38f82db8e435a8b07.svg"
-                         alt height="24px" onClick={startWatchParty} role="button"/>
+                         alt="" height="24px" onClick={startWatchParty} role="button"/>
                 </div>
             </section>
         </>

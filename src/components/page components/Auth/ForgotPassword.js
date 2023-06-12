@@ -14,6 +14,7 @@ const ForgotPassword = () => {
                 if (response.status === 200) {
                     console.log(response.data)
                     dispatch(SetLoginOverlay(!authState.loginOverlay))
+                    dispatch(Set_Error(''))
                     // dispatch(TokenDataAction(response.data))
                     // localStorage.setItem('token', JSON.stringify(response.data))
                 }
@@ -58,7 +59,10 @@ const ForgotPassword = () => {
           <div className="card-footer d-flex align-items-center justify-content-center gap-1 p-4 border-0"
                style={{backgroundColor: '#f2f2f2'}}>
                           <div>Back to</div>
-                          <a href="#" onClick={() => dispatch(LoginAction())}>Login</a>
+                          <a href="#" onClick={(e) => {
+                              e.preventDefault()
+                              dispatch(LoginAction())
+                          }}>Login</a>
                       </div>
         </>
     )

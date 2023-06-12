@@ -19,7 +19,7 @@ const MovieBoxEpisodes = () => {
                         </a>
                         <ul className="dropdown-menu w-100 rounded-0" style={{backgroundColor: 'black'}}
                             aria-labelledby="dropdownMenuLink">
-                            {seasons.map((season, index) => (<li key={index}><a className="dropdown-item dropdown-menus" style={{fontSize: '14px'}} href="#">Season
+                            {seasons.map((season, index) => (<li key={index}><a className="dropdown-item dropdown-menus" style={{fontSize: '14px'}} href="#" onClick={(e) => e.preventDefault()}>Season
                                 {season}</a></li>))}
                         </ul>
                     </div>

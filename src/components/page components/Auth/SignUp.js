@@ -1,6 +1,13 @@
 import '../../../assets/css/styles.css'
 import {useSelector, useDispatch} from "react-redux";
-import {LoginAction, Set_Error, SetLoginOverlay, SignUpDataAction, TokenDataAction} from "../../../redux/auth/actions";
+import {
+    LoginAction,
+    Set_Error,
+    SetLoginOverlay,
+    SetUserEmail,
+    SignUpDataAction,
+    TokenDataAction
+} from "../../../redux/auth/actions";
 import axios from "axios";
 
 
@@ -14,10 +21,10 @@ const SignUp = () => {
                 if (response.status === 200) {
                     console.log(response.data)
                     dispatch(TokenDataAction(response.data))
+                    dispatch(SetUserEmail(authState.signupdata.email))
                     dispatch(SetLoginOverlay(!authState.loginOverlay))
                     localStorage.setItem('token', JSON.stringify(response.data))
-                } else {
-                    dispatch(Set_Error('User already exists'))
+                    dispatch(Set_Error(''))
                 }
             })
             .catch(error => dispatch(Set_Error('User already exists')))
@@ -78,7 +85,10 @@ const SignUp = () => {
           <div className="card-footer d-flex align-items-center justify-content-center gap-1 p-4 border-0"
                style={{backgroundColor: '#f2f2f2'}}>
                           <div>Have an account?</div>
-                          <a href="#" onClick={() => dispatch(LoginAction())}>Login</a>
+                          <a href="#" onClick={(e) => {
+                              e.preventDefault()
+                              dispatch(LoginAction())
+                          }}>Login</a>
                       </div>
         </>
     )

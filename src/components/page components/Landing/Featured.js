@@ -27,7 +27,7 @@ const Featured = () => {
                                 </div>
                             </Link>
                             <div className="film-detail mt-2">
-                                <a href="#" className="text-decoration-none fw-bold">The Mandalorian</a>
+                                <a href="#" onClick={(e) => e.preventDefault()} className="text-decoration-none fw-bold">The Mandalorian</a>
                                 <div style={{color: '#273227'}} className="mt-1">
                                 <span className="p-1 mb-1 rounded-3"
                                       style={{backgroundColor: '#59815a',color: 'white'}}>HD</span> SS 3 <i

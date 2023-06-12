@@ -89,7 +89,7 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
                             />
                             :
                         <div className='bg-dark w-100 h-100 d-flex align-items-center justify-content-center'>
-                            <img src={youtube} alt height='200'/>
+                            <img src={youtube} alt="" height='200'/>
                         </div>}
                     <div className="p-3 d-inline-flex align-items-center gap-2"
                          style={{backgroundColor: '#111111',color: 'white',fontSize: '14px'}}>
