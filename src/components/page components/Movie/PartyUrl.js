@@ -1,10 +1,13 @@
 import {SET_PARTYURL} from "../../../redux/watch party/actions";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
+import axios from "axios";
 
 
 const PartyUrl = () => {
     const dispatch = useDispatch()
+    const authData = useSelector(state => state.auth)
+    const wpData = useSelector(state => state.wp)
     const [tempUrl, setTempUrl] = useState('')
     const handleChange = e => {
         setTempUrl(e.target.value)
@@ -12,7 +15,23 @@ const PartyUrl = () => {
     const handleSubmit = e => {
         e.preventDefault()
         dispatch(SET_PARTYURL(tempUrl))
+        const send_party_data = async (tempUrl) => {
+                await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
+                    url: tempUrl,
+                    is_playing: false,
+                    current_time: 0
+                }).then(response => {
+                    if (response.status === 200) {
+                        // const data = response.data
+                        // console.log(data)
+                    }
+                }).catch(error => console.log(error))
+              }
+
         setTempUrl('')
+        if (wpData.partyId) {
+            send_party_data(tempUrl)
+        }
     }
 
   return (

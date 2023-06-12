@@ -1,4 +1,4 @@
-import {ADDMESSAGE, SETPARTYID, SETPARTYURL, SETNUMPARTYUSERS, SETPARTYADMINSTATUS, SETIs_PLAYING, SETCURRENTTIME, ENDPARTY} from "./actionTypes";
+import {ADDMESSAGE, SETPARTYID, SETPARTYURL, SETNUMPARTYUSERS, SETPARTYADMINSTATUS, SETIs_PLAYING, SETCURRENTTIME, ENDPARTY, SETMEMBERJOINED} from "./actionTypes";
 
 
 export const ADD_MESSAGE = message => {
@@ -46,5 +46,11 @@ export const SET_CURRENT_TIME = time => {
 export const END_PARTY = () => {
     return {
         type: ENDPARTY
+    }
+}
+export const SET_MEMBER_JOINED = (bool) => {
+    return {
+        type: SETMEMBERJOINED,
+        payload: bool
     }
 }

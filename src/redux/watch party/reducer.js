@@ -1,4 +1,4 @@
-import {ADDMESSAGE, SETPARTYID, SETPARTYURL, SETNUMPARTYUSERS, SETPARTYADMINSTATUS, SETIs_PLAYING, SETCURRENTTIME, ENDPARTY} from "./actionTypes";
+import {ADDMESSAGE, SETPARTYID, SETPARTYURL, SETNUMPARTYUSERS, SETPARTYADMINSTATUS, SETIs_PLAYING, SETCURRENTTIME, ENDPARTY, SETMEMBERJOINED} from "./actionTypes";
 import axios from "axios";
 const wsUrl = process.env.REACT_APP_WS_URL
 const initialState = {
@@ -10,7 +10,8 @@ const initialState = {
     num_of_party_users: 0,
     adminStatus: false,
     is_playing: false,
-    current_time: 0
+    current_time: 0,
+    member_joined: false
 }
 
 
@@ -51,10 +52,16 @@ const WPReducer = (state=initialState, action) => {
                 ...state,
                 current_time: action.payload
             }
+        case SETMEMBERJOINED:
+            return {
+                ...state,
+                member_joined: action.payload
+            }
         case ENDPARTY:
             return {
                 ...initialState
             }
+
         default:
             return state
     }

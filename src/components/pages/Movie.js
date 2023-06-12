@@ -20,6 +20,9 @@ const Movie = () => {
             dispatch(SET_PARTYID(id))
             console.log(id)
         }
+        return () => {
+
+        }
     }, [])
     return (
         <>
