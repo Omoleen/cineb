@@ -1,4 +1,4 @@
-import {SIGNUP, LOGIN, FORGOT, CANCEL, SETLOGINDATA, SETSIGNUPDATA, SETFORGOTDATA, SETTOKENDATA, SETEMAIL, SETLOGINOVERLAY, ERROR, LOGOUT, SUBMITSIGNUPDATA, SUBMITFORGOTDATA, SUBMITLOGINDATA} from "./actionTypes";
+import {SIGNUP, LOGIN, FORGOT, CANCEL, SETLOGINDATA, SETSIGNUPDATA, SETFORGOTDATA, SETTOKENDATA, SETEMAIL, SETLOGINOVERLAY, ERROR, LOGOUT, LOADER, SUBMITSIGNUPDATA, SUBMITFORGOTDATA, SUBMITLOGINDATA} from "./actionTypes";
 const apiUrl = process.env.REACT_APP_API_URL
 const initialState = {
     url: apiUrl,
@@ -24,7 +24,8 @@ const initialState = {
         access: null,
         refresh: null
     },
-    error: ''
+    error: '',
+    isLoading: false
 }
 
 export const AuthReducer = (state= initialState, action) => {
@@ -105,10 +106,14 @@ export const AuthReducer = (state= initialState, action) => {
                 error: action.payload
             }
         case LOGOUT:
-            // localStorage.getItem('token')
             localStorage.removeItem('token')
             return {
                 ...initialState
+            }
+        case LOADER:
+            return {
+                ...state,
+                isLoading: action.payload
             }
         default:
             return state

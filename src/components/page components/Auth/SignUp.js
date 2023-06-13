@@ -2,7 +2,7 @@ import '../../../assets/css/styles.css'
 import {useSelector, useDispatch} from "react-redux";
 import {
     LoginAction,
-    Set_Error,
+    Set_Error, setIsLoading,
     SetLoginOverlay,
     SetUserEmail,
     SignUpDataAction,
@@ -16,6 +16,7 @@ const SignUp = () => {
     const authState = useSelector(state => state.auth)
     const handleSubmit = async (e) => {
         e.preventDefault()
+        dispatch(setIsLoading(true))
         await axios.post(authState.url +'user/register/', authState.signupdata)
             .then(response => {
                 if (response.status === 200) {
@@ -28,6 +29,7 @@ const SignUp = () => {
                 }
             })
             .catch(error => dispatch(Set_Error('User already exists')))
+        dispatch(setIsLoading(true))
     }
     const handleInput = e => {
         dispatch(SignUpDataAction({[e.target.name]: e.target.value}))
@@ -78,7 +80,11 @@ const SignUp = () => {
                                          id="password1"/>
                               </div>
                               <button className="text-white rounded-3 shadow-none border-0 py-2" onClick={handleSubmit}
-                                      style={{backgroundColor:'#59815a',fontSize:'16px'}}>Register
+                                      style={{backgroundColor:'#59815a',fontSize:'16px'}}> {authState.isLoading ?
+                                      <div className="spinner-border" role="status">
+                                          <span className="visually-hidden">Loading...</span>
+                                      </div>
+                                      : 'Register'}
                               </button>
                           </form>
                       </div>

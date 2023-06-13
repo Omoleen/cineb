@@ -1,4 +1,4 @@
-import {LOGIN, SIGNUP, FORGOT, CANCEL, SETLOGINDATA,SETSIGNUPDATA,SETFORGOTDATA, SETLOGINOVERLAY, SETTOKENDATA, SETEMAIL, ERROR, LOGOUT, SUBMITFORGOTDATA, SUBMITSIGNUPDATA, SUBMITLOGINDATA} from "./actionTypes";
+import {LOGIN, SIGNUP, FORGOT, CANCEL, SETLOGINDATA,SETSIGNUPDATA,SETFORGOTDATA, SETLOGINOVERLAY, SETTOKENDATA, SETEMAIL, ERROR, LOGOUT, LOADER, SUBMITFORGOTDATA, SUBMITSIGNUPDATA, SUBMITLOGINDATA} from "./actionTypes";
 
 
 
@@ -67,6 +67,12 @@ export const Set_Error = (err) => {
     return {
         type: ERROR,
         payload: err
+    }
+}
+export const setIsLoading = payload => {
+    return {
+        type: LOADER,
+        payload: payload
     }
 }
 // export const SubmitLoginDataAction = () => {

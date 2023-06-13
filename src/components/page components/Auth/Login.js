@@ -7,15 +7,21 @@ import {
     ForgotAction,
     LoginDataAction,
     TokenDataAction,
-    SetLoginOverlay
+    SetLoginOverlay,
+    setIsLoading
 } from "../../../redux/auth/actions";
 import axios from "axios";
 
 const Login = () => {
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     const dispatch = useDispatch()
     const authState = useSelector(state => state.auth)
     const handleSubmit = async (e) => {
+        // await sleep(10)
         e.preventDefault()
+        dispatch(setIsLoading(true))
         console.log('login submitted')
         await axios.post(authState.url+'user/login/', authState.logindata)
             .then(response => {
@@ -28,9 +34,11 @@ const Login = () => {
                     localStorage.setItem('token', JSON.stringify(response.data))
                     dispatch(SetLoginOverlay(!authState.loginOverlay))
                     dispatch(Set_Error(''))
+                    dispatch(LoginDataAction({password: ''}))
                 }
             })
             .catch(error => dispatch(Set_Error('Incorrect Login Details')))
+        dispatch(setIsLoading(false))
     }
     const handleForgot = (e) => {
         e.preventDefault()
@@ -82,7 +90,11 @@ const Login = () => {
                       <a href="" onClick={handleForgot}>Forgot password?</a>
                   </div>
                   <button className="text-white rounded-3 shadow-none border-0 py-2" onClick={handleSubmit}
-                          style={{backgroundColor:'#59815a',fontSize:'16px'}}>Login
+                          style={{backgroundColor:'#59815a',fontSize:'16px'}}> {authState.isLoading ?
+                      <div className="spinner-border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                      </div>
+                      : 'Login'}
                   </button>
               </form>
           </div>

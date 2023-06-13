@@ -1,6 +1,6 @@
 import '../../../assets/css/styles.css'
 import {useSelector, useDispatch} from "react-redux";
-import {LoginAction, ForgotDataAction, SetLoginOverlay, Set_Error} from "../../../redux/auth/actions";
+import {LoginAction, ForgotDataAction, SetLoginOverlay, Set_Error, setIsLoading} from "../../../redux/auth/actions";
 import axios from "axios";
 
 const ForgotPassword = () => {
@@ -8,6 +8,7 @@ const ForgotPassword = () => {
     const authState = useSelector(state => state.auth)
     const handleSubmit = async (e) => {
         e.preventDefault()
+        dispatch(setIsLoading(true))
         await axios.post(authState.url +'user/forgot/', authState.forgotdata)
             .then(response => {
                 console.log(response.data)
@@ -20,6 +21,7 @@ const ForgotPassword = () => {
                 }
             })
             .catch(error => console.log(error))
+        dispatch(setIsLoading(false))
     }
     const handleInput = e => {
         dispatch(ForgotDataAction({[e.target.name]: e.target.value}))
@@ -52,7 +54,11 @@ const ForgotPassword = () => {
                                          id="email"/>
                               </div>
                               <button className="text-white rounded-3 shadow-none border-0 py-2" onClick={handleSubmit}
-                                      style={{backgroundColor:'#59815a',fontSize:'16px'}}>Submit
+                                      style={{backgroundColor:'#59815a',fontSize:'16px'}}> {authState.isLoading ?
+                                      <div className="spinner-border" role="status">
+                                          <span className="visually-hidden">Loading...</span>
+                                      </div>
+                                      : 'Submit'}
                               </button>
                           </form>
                       </div>
