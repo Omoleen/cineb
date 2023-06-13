@@ -19,9 +19,9 @@ const Login = () => {
     const dispatch = useDispatch()
     const authState = useSelector(state => state.auth)
     const handleSubmit = async (e) => {
-        // await sleep(10)
         e.preventDefault()
         dispatch(setIsLoading(true))
+        // await sleep(3000)
         console.log('login submitted')
         await axios.post(authState.url+'user/login/', authState.logindata)
             .then(response => {
