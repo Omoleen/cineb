@@ -59,9 +59,9 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
                                                  send_party_data(true, 0)
 
                                              } else {
-                                                 if (wpData.current_time) {
-                                                     playerRef.current.seekTo(wpData.current_time, 'seconds')
-                                                 }
+                                                 // if (wpData.current_time) {
+                                                 //     playerRef.current.seekTo(wpData.current_time, 'seconds')
+                                                 // }
                                              }
                                              console.log('start' )
                                              let time = playerRef.current.getCurrentTime()

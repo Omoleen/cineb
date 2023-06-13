@@ -1,7 +1,9 @@
 import {SIGNUP, LOGIN, FORGOT, CANCEL, SETLOGINDATA, SETSIGNUPDATA, SETFORGOTDATA, SETTOKENDATA, SETEMAIL, SETLOGINOVERLAY, ERROR, LOGOUT, LOADER, SUBMITSIGNUPDATA, SUBMITFORGOTDATA, SUBMITLOGINDATA} from "./actionTypes";
 const apiUrl = process.env.REACT_APP_API_URL
+const feUrl = process.env.REACT_APP_FE_URL
 const initialState = {
     url: apiUrl,
+    feUrl: feUrl,
     loginOverlay: false,
     login: true,
     signup: false,

@@ -19,6 +19,7 @@ import {SET_PARTYID, ADD_MESSAGE, SET_PARTYURL, END_PARTY} from "../../../redux/
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import {Set_Error, SetLoginOverlay} from "../../../redux/auth/actions";
 import {MovieBoxMovie} from "./MovieBoxMovie";
+import axios from "axios";
 
 
 const MovieBox = () => {
@@ -52,9 +53,8 @@ const MovieBox = () => {
 
     const handleCopy = async () => {
         try {
-          await navigator.clipboard.writeText(authData.url + 'movie/' + wpData.partyId);
+          await navigator.clipboard.writeText(authData.feUrl + 'video/' + wpData.partyId);
           console.log('Text copied to clipboard');
-          console.log(authData.url.replace('8', '3') + 'movie/' + wpData.partyId)
             setCopyLink('Link Copied')
             setTimeout(() => {
           // Code to run after 5 seconds
@@ -107,6 +107,11 @@ const MovieBox = () => {
         } else {
             movieSectionMovie.current.style.width = '100%'
         }
+        const delete_party = async () => {
+            axios.delete(authData.url + `watch/group/${wpData.partyId}/`)
+                .catch(e => console.log(e))
+        }
+        delete_party()
     }
 
     return (
