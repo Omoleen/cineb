@@ -94,7 +94,10 @@ const MovieBox = () => {
         partyIcon.current.style.display = 'none'
         openWatchParty()
     }
-
+    const delete_party = async () => {
+            axios.delete(authData.url + `watch/group/${wpData.partyId}/`)
+                .catch(e => console.log(e))
+        }
     function endWatchParty() {
         // setisWPClicked(false)
         setisWatchParty(false)
@@ -107,11 +110,11 @@ const MovieBox = () => {
         } else {
             movieSectionMovie.current.style.width = '100%'
         }
-        const delete_party = async () => {
-            axios.delete(authData.url + `watch/group/${wpData.partyId}/`)
-                .catch(e => console.log(e))
+
+        if (wpData.adminStatus) {
+            delete_party()
         }
-        delete_party()
+
     }
 
     return (

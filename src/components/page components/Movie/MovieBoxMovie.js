@@ -23,7 +23,7 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
         }).then(response => {
             if (response.status === 200) {
                 const data = response.data
-                console.log(data)
+                // console.log(data)
                 dispatch(SET_IS_PLAYING(data.is_playing))
                 dispatch(SET_CURRENT_TIME(data.current_time))
             }
@@ -35,7 +35,7 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
         }).then(response => {
             if (response.status === 200) {
                 const data = response.data
-                console.log(data)
+                // console.log(data)
                 dispatch(SET_IS_PLAYING(data.is_playing))
             }
         }).catch(error => console.log(error))
@@ -64,8 +64,8 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
                                                  // }
                                              }
                                              console.log('start' )
-                                             let time = playerRef.current.getCurrentTime()
-                                             console.log(playerRef.current.getCurrentTime())
+                                             // let time = playerRef.current.getCurrentTime()
+                                             // console.log(playerRef.current.getCurrentTime())
                                              // playerRef.current.seekTo(60, 'seconds')
                                             }
                                          }
@@ -74,8 +74,10 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
                                                  // send a post request
                                                  // is_playing
                                                  // current_time - getCurrentTime
-                                                 // let time = playerRef.current.getCurrentTime()
-                                                 send_is_playing_data(true)
+                                                 let time = playerRef.current.getCurrentTime()
+                                                 send_party_data(true, time.toFixed(6))
+                                                 // send_is_playing_data(true)
+                                                 console.log('admin playing')
                                              } else {
                                                  // let time = playerRef.current.getCurrentTime()
                                                  // if (wpData.current_time !== time.toFixed(6)) {
@@ -84,25 +86,27 @@ const MovieBoxMovie = ({movieSectionMovie, playerRef}) => {
 
                                              }
                                              console.log('play')
-                                              console.log(playerRef.current.getCurrentTime())
+                                              // console.log(playerRef.current.getCurrentTime())
                                             }
                                          }
                                          onPause={() => {
                                              if (wpData.adminStatus) {
                                                  // send a post request
                                                  // is_playing
+                                                 console.log('admin pause')
                                                  let time = playerRef.current.getCurrentTime()
                                                  send_party_data(false, time.toFixed(6))
+
                                              } else {
-                                                 let time = playerRef.current.getCurrentTime()
+                                                 // let time = playerRef.current.getCurrentTime()
                                                  // if (wpData.current_time !== time.toFixed(6)) {
                                                  //
                                                  // }
-                                             playerRef.current.seekTo(wpData.current_time, 'seconds')
+                                                 playerRef.current.seekTo(wpData.current_time, 'seconds')
 
                                              }
                                              console.log('pause')
-                                             console.log(playerRef.current.getCurrentTime())
+                                             // console.log(playerRef.current.getCurrentTime())
                                             }
                                          }
                                          onReady={() => {

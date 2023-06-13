@@ -182,7 +182,39 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
         },
         // shouldReconnect: (closeEvent) => true,
         })
+    const update_movie_time_request = async () => {
+                    await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
+                        new_member: true,
+                    }).then(response => {
+                        if (response.status === 200) {
+                            // const data = response.data
+                            // console.log(data)
+                        }
+                    }).catch(error => console.log(error))
+                }
+    const send_party_data = async (is_playing, current_time) => {
+            await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
+                is_playing: is_playing,
+                current_time: current_time,
+                new_member: false,
+            }).then(response => {
+                if (response.status === 200) {
+                    // let data = response.data
+                    // console.log(data)
+                }
+            }).catch(error => console.log(error))
+          }
+    useEffect(() => {
+        // if (!wpData.member_joined) {
+        //
+        //           }
+        update_movie_time_request()
+          dispatch(SET_MEMBER_JOINED(true))
+          console.log(`member joined ${wpData.member_joined}`)
+        return () => {
 
+        }
+    }, [])
     useEffect(() => {
         // Event listener for when the connection is established
         const socket = new WebSocket(wpData.url + 'group/');
@@ -209,40 +241,16 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                   dispatch(SET_NUM_PARTYUSERS(data?.num_of_users))
               }
 
+
               if (!wpData.adminStatus) {
                   // update the db time
-                  dispatch(SET_IS_PLAYING(data.is_playing))
-                  if (data.current_time - wpData.current_time > 1) {
+                    dispatch(SET_IS_PLAYING(data.is_playing))
+                  if (data.current_time - wpData.current_time > 2) {
                       dispatch(SET_CURRENT_TIME(data.current_time))
                   }
                   if (wpData.partyUrl !== data.url) {
                       dispatch(SET_PARTYURL(data.url))
                   }
-                const update_movie_time_request = async () => {
-                    await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
-                        new_member: true,
-                    }).then(response => {
-                        if (response.status === 200) {
-                            // const data = response.data
-                            // console.log(data)
-                        }
-                    }).catch(error => console.log(error))
-                }
-
-                  // if (wpData.member_joined === false) {
-                  //     // update_movie_time_request()
-                  //     console.log(`member joined ${wpData.member_joined}`)
-                  //     dispatch(SET_MEMBER_JOINED(true))
-                  //
-                  // }
-                  // if (isJoined) {
-                  //     // console.log(`member joined ${isJoined}`)
-                  //     setIsJoined(true)
-                  // } else {
-                  //     console.log(`member joined ${isJoined}`)
-                  //     update_movie_time_request()
-                  //     setIsJoined((state) => true)
-                  // }
 
               } else {
                   if (!wpData.partyUrl && data.url) {
@@ -251,47 +259,16 @@ const MovieBoxWatchParty = ({movieSectionMovie, watchParty, watchPartyIcons, par
                   if (!wpData.current_time && data.current_time) {
                       dispatch(SET_CURRENT_TIME(data.current_time))
                   }
-                  if (data.new_member === true) {
+                  if (data.new_member) {
                       let time = playerRef.current.getCurrentTime()
-                      const send_party_data = async (is_playing, current_time) => {
-                        await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
-                            is_playing: is_playing,
-                            current_time: current_time
-                        }).then(response => {
-                            if (response.status === 200) {
-                                const data = response.data
-                                console.log(data)
-                            }
-                        }).catch(error => console.log(error))
-                      }
-                      if (time.toFixed(6) !== wpData.current_time) {
+                      console.log(data.current_time)
+                      console.log(time.toFixed(6))
+                      if (time.toFixed(6) !== data.current_time) {
                           send_party_data(wpData.is_playing, time.toFixed(6) ? time.toFixed(6) : 0 )
                       }
-
-
-
                   }
               }
-          //     if (wpData.adminStatus && (parseInt(wpData.num_of_party_users) !== parseInt(data.num_of_users))) {
-          //         // update the db time
-          //         const send_party_data = async (is_playing, current_time) => {
-          //           await axios.patch(`${authData.url}watch/group/${wpData.partyId}/`, {
-          //               is_playing: is_playing,
-          //               current_time: current_time
-          //           }).then(response => {
-          //               if (response.status === 200) {
-          //                   const data = response.data
-          //                   console.log(data)
-          //               }
-          //           }).catch(error => console.log(error))
-          //     }
-          //     console.log(playerRef.current)
-          //     if (playerRef.current !== null) {
-          //         let time = playerRef.current.getCurrentTime()
-          //         send_party_data(wpData.is_playing, time.toFixed(6) ? time.toFixed(6) : 0 )
-          //     }
-          // }
-        };
+        }
         // setIsConnected(true)
         // Event listener for when the connection is closed
         socket.onclose = function(event) {
