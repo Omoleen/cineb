@@ -7,14 +7,14 @@ const AboutMovie = () => {
                  style={{maxHeight: 'fit-content'}}>
                 <div className="d-none d-sm-block ">
                     <img
-                        src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
+                        src="https://img.cineb.rs/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
                         title="The Portable Door" alt="The Portable Door"
                         className="rounded-3 img-fluid w-100"
                         />
                 </div>
                 <div className="col-3 d-sm-none">
                     <img
-                        src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
+                        src="https://img.cineb.rs/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
                         title="The Portable Door" alt="The Portable Door"
                         className="rounded-3 img-fluid w-100"
                         />

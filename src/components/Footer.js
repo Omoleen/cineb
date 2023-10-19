@@ -8,10 +8,10 @@ const Footer = () => {
                 className="d-flex flex-column flex-sm-row gap-2 gap-sm-0 justify-content-sm-between align-items-sm-center p-4 p-lg-5">
             <div className="d-none d-xl-block">
                 <div className="d-flex flex-column">
-                    <a href="" onClick={(e) => e.preventDefault()} className="mb-3"><img src="https://cineb.net/images/group_3/theme_3/logo.png?v=0.1"
+                    <a href="" onClick={(e) => e.preventDefault()} className="mb-3"><img src="https://cineb.rs/images/group_3/theme_3/logo.png?v=0.1"
                                                       alt=""
                                                       width="40" height="40"/> </a>
-                    <div className="d-flex flex-row">&copy; Cineb.net</div>
+                    <div className="d-flex flex-row">&copy; Cineb.rs</div>
                 </div>
             </div>
             <div className="d-flex flex-column col-12 col-sm-8 col-xl-6">

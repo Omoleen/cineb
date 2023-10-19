@@ -28,7 +28,7 @@ const ImbdTrending = () => {
                                 <Link to="/video" className="text-decoration-none">
                                     <div className="film-poster">
                                         <img
-                                            src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
+                                            src="https://img.cineb.rs/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
                                             title="The Portable Door" alt="The Portable Door"
                                             className="rounded-3 img-fluid w-100"
                                             />
@@ -80,7 +80,7 @@ const ImbdTrending = () => {
                                 <Link to="/video" className="text-decoration-none">
                                     <div className="film-poster">
                                         <img
-                                            src="https://img.cineb.net/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
+                                            src="https://img.cineb.rs/xxrz/250x400/188/7c/09/7c0938d2a7569b6bf9c437be49f300cb/7c0938d2a7569b6bf9c437be49f300cb.jpg"
                                             title="The Portable Door" alt="The Portable Door"
                                             className="rounded-3 img-fluid w-100"
                                             />
@@ -127,7 +127,7 @@ const ImbdTrending = () => {
                     <div key={index} className="d-flex imbd-movies mb-2">
                     <Link to="/video">
                         <img
-                            src="https://img.cineb.net/xxrz/250x400/188/c6/7d/c67d86ebbe68f9adbac3e564416f5e29/c67d86ebbe68f9adbac3e564416f5e29.jpg"
+                            src="https://img.cineb.rs/xxrz/250x400/188/c6/7d/c67d86ebbe68f9adbac3e564416f5e29/c67d86ebbe68f9adbac3e564416f5e29.jpg"
                             width="100" height="148" className="rounded-3" alt=''/>
                     </Link>
                     <div className="mx-3">

@@ -5,7 +5,7 @@ import {AuthReducer} from "./auth/reducer";
 import {WPReducer} from "./watch party/reducer";
 import thunkMiddleware from 'redux-thunk';
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         cake: cakeReducer,
         api: APIReducer,
@@ -16,3 +16,4 @@ export const store = configureStore({
     middleware: [thunkMiddleware],
     devTools: process.env.NODE_ENV !== 'production'
 })
+export default store
